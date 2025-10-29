@@ -13,10 +13,23 @@ def view_tasks(tasks:list):
     print ('\ntasks:')
     for i in range(len(tasks)):
         print (f'\n{i+1}. {tasks[i]}')
-    return  
+    return 
 
-def delete_task(tasks:list):
-    return 'This action is not yet available.'
+def get_task_index_from_user() -> int:
+    task_number = int(input('Task number to remove?'))
+    index = task_number-1
+    return index
+
+def delete_task(tasks: list):
+    view_tasks(tasks)
+    index = get_task_index_from_user()
+    if index not in range(len(tasks)):
+        print ('There is no task at the number you specified.')
+        return delete_task(tasks)
+    tasks.pop(index)
+    return 'The task with the number you specified was successfully removed.'
+
+    # return 'This action is not yet available.'
 
 def edited_task(tasks:list):
     return 'This action is not yet available.'
