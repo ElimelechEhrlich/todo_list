@@ -29,10 +29,14 @@ def delete_task(tasks: list):
     tasks.pop(index)
     return 'The task with the number you specified was successfully removed.'
 
-    # return 'This action is not yet available.'
-
-def edited_task(tasks:list):
-    return 'This action is not yet available.'
+def edit_task(tasks: list) -> bool:
+    view_tasks(tasks)
+    index = get_task_index_from_user()
+    new_task = str(input('new task in place of the existing one:'))
+    if index not in range(len(tasks)):
+        print ('There is no task at the number you specified.')
+    tasks[index] = new_task
+    return 'The task was successfully modified.'
 
 def brake(tasks:list):
     return 'End of task organization'
@@ -41,7 +45,7 @@ def options():
     options = {1: ('Add task', added_tesk),
                2 : ('View tasks', view_tasks),
                3 : ('Delete task', delete_task),
-               4 : ('Edit task', edited_task),
+               4 : ('Edit task', edit_task),
                5 : ('Exit', brake)
                }
     return options
